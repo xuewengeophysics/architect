@@ -1,3 +1,2 @@
-# architect
+# 架构师
 
-+ https://github.com/bjmashibing/InternetArchitect
