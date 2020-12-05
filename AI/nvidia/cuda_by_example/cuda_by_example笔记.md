@@ -34,3 +34,66 @@ int main( void ) {
 }
 ```
 
+
+
+# 第4章 CUDA C并行编程
+
+## 4.1 基于GPU的矢量求和
+
++ 主函数：
+
+```c
+#define N   10
+
+int main( void ) {
+    int a[N], b[N], c[N];
+    int *dev_a, *dev_b, *dev_c;
+
+    // 在GPU上分配内存
+    HANDLE_ERROR( cudaMalloc( (void**)&dev_a, N * sizeof(int) ) );
+    HANDLE_ERROR( cudaMalloc( (void**)&dev_b, N * sizeof(int) ) );
+    HANDLE_ERROR( cudaMalloc( (void**)&dev_c, N * sizeof(int) ) );
+
+    // 在CPU上为数组a和b赋值
+    for (int i=0; i<N; i++) {
+        a[i] = -i;
+        b[i] = i * i;
+    }
+
+    // 将数组a和b复制到GPU
+    HANDLE_ERROR( cudaMemcpy( dev_a, a, N * sizeof(int),
+                              cudaMemcpyHostToDevice ) );
+    HANDLE_ERROR( cudaMemcpy( dev_b, b, N * sizeof(int),
+                              cudaMemcpyHostToDevice ) );
+
+    add<<<N,1>>>( dev_a, dev_b, dev_c );
+
+    // 将数组c从GPU复制到CPU
+    HANDLE_ERROR( cudaMemcpy( c, dev_c, N * sizeof(int),
+                              cudaMemcpyDeviceToHost ) );
+
+    // 显示结果
+    for (int i=0; i<N; i++) {
+        printf( "%d + %d = %d\n", a[i], b[i], c[i] );
+    }
+
+    // 释放在GPU上分配的内存
+    HANDLE_ERROR( cudaFree( dev_a ) );
+    HANDLE_ERROR( cudaFree( dev_b ) );
+    HANDLE_ERROR( cudaFree( dev_c ) );
+
+    return 0;
+}
+```
+
++ 核函数：
+  + blockIdx是一个内置变量，在CUDA运行时中已经预先定义了。
+
+```c
+__global__ void add( int *a, int *b, int *c ) {
+    int tid = blockIdx.x;    // 计算该索引处的数据
+    if (tid < N)
+        c[tid] = a[tid] + b[tid];
+}
+```
+
