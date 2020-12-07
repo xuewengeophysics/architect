@@ -97,3 +97,30 @@ __global__ void add( int *a, int *b, int *c ) {
 }
 ```
 
+## 4.2基于GPU的Julia集
+
++ 主函数：
+  + dim3表示一个三维数组。虽然当前不支持三维线程格(grid)，但CUDA希望得到一个三维数组，所以将最后一维的大小设为1。
+
+```
+int main( void ) {
+    DataBlock   data;
+    CPUBitmap bitmap( DIM, DIM, &data );
+    unsigned char    *dev_bitmap;
+
+    HANDLE_ERROR( cudaMalloc( (void**)&dev_bitmap, bitmap.image_size() ) );
+    data.dev_bitmap = dev_bitmap;
+
+    dim3    grid(DIM,DIM);
+    kernel<<<grid,1>>>( dev_bitmap );
+
+    HANDLE_ERROR( cudaMemcpy( bitmap.get_ptr(), dev_bitmap,
+                              bitmap.image_size(),
+                              cudaMemcpyDeviceToHost ) );
+                              
+    HANDLE_ERROR( cudaFree( dev_bitmap ) );
+                              
+    bitmap.display_and_exit();
+}
+```
+
