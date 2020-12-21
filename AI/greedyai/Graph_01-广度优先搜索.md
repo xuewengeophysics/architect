@@ -1,4 +1,4 @@
-# 广度优先搜索
+# Breadth-First Search(BFS, 广度优先搜索)
 
 ## 1. 先备知识与注意事项
 
@@ -16,8 +16,8 @@
      + 白色表示该顶点还没有被找过；
      + 灰色表示该顶点已经被某个顶点找过；
      + 黑色表示该顶点已经从`queue`的队伍中移除了(**该顶点所有的邻接点都被找过**)。
-  3. `distance` 数组：记录每一个顶点与起点顶点之距离；
-  4. `predecessor` array：记录一个顶点是被一个顶点找到的，如此便能回溯路径。
+  3. `distance` array：记录每一个顶点与起点顶点之距离；
+  4. `predecessor` array：记录某个顶点是被哪一个顶点找到的，如此便能回溯路径。
 
 
 
@@ -48,8 +48,8 @@
 
   4. 接着，以继续`queue`的`front`当作新的起点搜寻，重复上述步骤。当`queue`中的顶点都被移除(pop())表示`Adjacency List`中的所有顶点被都当作起点搜寻过其相邻的顶点，此时`BFS()`便完成，得到以顶点(A)为起点，所有其余顶点与之相对应的`distance`与`predecessor`。
 
+## 3. 程式码
 
+## 4. 参考资料
 
-## 3.参考资料
-
-1. [图：广度优先搜索（BFS，广度优先搜索）](https://alrightchiu.github.io/SecondRound/graph-breadth-first-searchbfsguang-du-you-xian-sou-xun.html)
+1. [Graph: Breadth-First Search(BFS, 广度优先搜索)](https://alrightchiu.github.io/SecondRound/graph-breadth-first-searchbfsguang-du-you-xian-sou-xun.html)
