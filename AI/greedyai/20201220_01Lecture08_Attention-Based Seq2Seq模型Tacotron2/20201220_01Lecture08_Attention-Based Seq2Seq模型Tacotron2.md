@@ -18,8 +18,8 @@
 
 ### 1.3 课前预习
 
-+ 阅读tacotron2论文：Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions
-+ 阅读论文：Forward Attention in Sequence-to-sequence Acoustic Modelling for Speech Synthesis
++ 阅读Tacotron2论文：[Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions](https://arxiv.org/abs/1712.05884)
++ 阅读论文：[Forward Attention in Sequence-to-sequence Acoustic Modelling for Speech Synthesis](https://arxiv.org/abs/1807.06736)
 
 ### 1.4 预习阅读材料
 
