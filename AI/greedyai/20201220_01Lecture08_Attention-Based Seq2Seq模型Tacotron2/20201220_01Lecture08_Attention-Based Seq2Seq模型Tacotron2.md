@@ -43,3 +43,15 @@ Cooperative Group的粒度定义和线程同步处理方法。
 
 ## 2. 主要内容
 
++ 语音合成声学模型算法：
+  + Tacotron
+  + Tacotron2
+  + FastSpeech
+  + HighWay Network
+  + GRU
+  + DURIAN  
++ Attention算法：
+  + Dot-Production Attention
+  + Forward-Attention
+  + LocationSensitive-Attention
+  + Converage Attention  
