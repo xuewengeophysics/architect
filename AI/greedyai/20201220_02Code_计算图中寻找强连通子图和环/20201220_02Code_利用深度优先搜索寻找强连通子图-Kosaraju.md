@@ -2,9 +2,10 @@
 
 ## 1. 先备知识与注意事项
 
-+ **如果一个有向图只有一个强连通分量，则它是强连通的**。
-+ 在一个directed graph中，若对于**任意两个**vertex(A)与vertex(B)之间，不是同时存在「从vertex(A)走到vertex(B)」以及「从vertex(B)走到vertex( A)」的path，那么此directed graph就不是strongly connected，里面一定包含了**两个以上**的**strongly connected component(SCC)**。
-+ **有向图的强连通分量是一个最大结点集合，对于该集合中的任意一对结点u和v来说，路径u->v和v->u同时存在**；
++ **强连通图**：在有向图中，**vi到vj和vj到vi都有路径**。如果一个有向图只有一个**强连通分量(Strongly Connected Component, SCC)**，则它是强连通的。
++ **如果一个有向图不是强连通的，那它一定有2个以上的强连通分量**。在一个directed graph中，若对于**任意两个**vertex(A)与vertex(B)之间，**不是同时存在**「从vertex(A)走到vertex(B)」以及「从vertex(B)走到vertex( A)」的path，那么此directed graph就不是强连通的(Strongly Connected, SC)，里面一定包含了**2个以上**的**strongly connected component(SCC)**。
++ **有向图的强连通分量是一个最大结点集合(强连通子图)，对于该集合中的任意一对结点u和v来说，路径u->v和v->u同时存在**；
++ **对于强连通子图，有一个特定的事实就是，该子图一定形成环，那么从该子图中任意点出发，总能回到出发点**；
 
 ![20201220_02Code_利用深度优先搜索寻找强连通子图-f1.png](https://github.com/xuewengeophysics/architect/blob/master/AI/greedyai/docs/20201220_02Code_%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%AF%BB%E6%89%BE%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%AD%90%E5%9B%BE-f1.png?raw=true)  
 
